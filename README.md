@@ -1,70 +1,29 @@
-# Getting Started with Create React App
+# Hypothesis Interview Take Home Assignment
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Dear reviewers reading, given this is a small example, I have ommited typescrpit, and focused more on the explination of _why_ rather than how.
 
-## Available Scripts
+First thing to note, there is not very many in users in the list, so we will simply store it in memory, and just use the `filter` method, but this would not work at scale.  
 
-In the project directory, you can run:
+## Scaling side tangent
 
-### `npm start`
+for _fun_ we will consider possible scaling solutions:
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+1. Use a cache and suffix trie
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+We would have a seperate microservice which we would call each time the form updates.  This microservice may talk to a redis cache that has a suffix trie that represents all the users.  This would allow for $O(log(n))$ look ups, and is more compressed to send over the wire when the text input in the form changes.
 
-### `npm test`
+2. WASM in memory db
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+Use WASM and use a portable in memory database, (there is a talk that some microft engineers demo a proof of concept for this.) I bring this up mostly because I belive hypothesis may need this for what they want to accomplish overall.
 
-### `npm run build`
+## Components
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+In effort to keep the code simple, and realzing the functionality of the assignment happens in one place, I don't immediatly see the _correct_ way to break up the components ahead of time, so I will build it spagheti code style, and then refactor as the abstractions become more clear
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+## Styling
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+Out of familiarity, I will use tailwindcss, but I am not married to it.
 
-### `npm run eject`
+## testing
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+For Simplicity, I will use a few cypress tests rather than unit test libraties like jest and react testing library, since I am more comfortable, and I have had better testing experiences overall with this tool; I like the playback feature.  Again,  I'm not married to it.
