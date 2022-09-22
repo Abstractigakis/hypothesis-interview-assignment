@@ -2,9 +2,22 @@
 
 Dear reviewers reading, given this is a small example, I have ommited typescrpit, and focused more on the explination of _why_ rather than how.
 
-On first read through, I don't think that a feature like this can be implemented _production ready_ in just a few hours with all the bells and whistles, documetation and testing etc.  I also have a high standard of what production ready means.  Would love to have a talk about the SDLC.
+On second read through, I don't think that a feature like this can be implemented _production ready_ in just a few hours with all the bells and whistles, documetation and testing etc.  I also have a high standard of what production ready means.  Would love to have a talk about the SDLC.
 
-We will start with a MVP: i.e. the feature has all fuctions necessary
+We will start with a minimum viable product: i.e. the feature has all necessary functionality with very minimal styling.  We will omit nice transitions, svg animations, and other features that really sell the product at the end of the day.
+
+## What is important
+
+- [ ] Simple way to add users in comments (we will use a button)
+
+## What is extra
+
+- [ ] bold, Italics, ... mune (especially if we want to do it from scratch)
+- [ ] Multi feature search (search username and the user's name based on input)
+- [ ] add the 'wikilinks' effect for ever better UX
+- [ ] make the user ref render as a nice badge
+- [ ] smooth animated transitions to the form
+- [ ] animated svg buttons
 
 First thing to note, there is not very many in users in the list, so we will simply store it in memory, and just use the `filter` method, but this would not work at scale.  
 
