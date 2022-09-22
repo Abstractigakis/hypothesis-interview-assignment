@@ -2,6 +2,10 @@
 
 Dear reviewers reading, given this is a small example, I have ommited typescrpit, and focused more on the explination of _why_ rather than how.
 
+On first read through, I don't think that a feature like this can be implemented _production ready_ in just a few hours with all the bells and whistles, documetation and testing etc.  I also have a high standard of what production ready means.  Would love to have a talk about the SDLC.
+
+We will start with a MVP: i.e. the feature has all fuctions necessary
+
 First thing to note, there is not very many in users in the list, so we will simply store it in memory, and just use the `filter` method, but this would not work at scale.  
 
 ## Scaling side tangent
