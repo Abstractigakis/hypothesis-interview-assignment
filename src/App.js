@@ -29,13 +29,18 @@ const App = () => {
   const [formShow, setFormShow] = useState(false);
   const [comment, setComment] = useState("");
   const [users, setUsers] = useState(ALL_USERS);
-  const [searchString, setSearchString] = useState("");
+  const [searchString, setSearchString] = useState(null);
+
   useEffect(() => {
-    if (searchString == "") {
-      setSearchString(ALL_USERS);
+    console.log(searchString);
+    console.log(users);
+    if (!searchString) {
+      setUsers(ALL_USERS);
     } else {
+      setUsers(ALL_USERS.filter((u) => u.username.includes(searchString)));
     }
   }, [searchString]);
+
   const textAreaRef = useRef(null);
 
   return (
@@ -51,6 +56,7 @@ const App = () => {
         <div className="flex">
           <Button
             onClick={() => {
+              textAreaRef.current.focus();
               setFormShow(true);
             }}
           >
@@ -59,17 +65,21 @@ const App = () => {
         </div>
         {formShow && (
           <div className="h-40 overflow-scroll text-white bg-gray-700">
-            {ALL_USERS.map((u) => (
+            <input
+              type="text"
+              className="text-black"
+              onChange={(e) => setSearchString(e.target.value)}
+            />
+            {users.map((u) => (
               <UserBadge
                 user={u}
                 onClick={() => {
-                  textAreaRef.current.focus();
                   setComment((p) => comment + "[[" + u.username + "]]");
                   setFormShow(false);
+                  setSearchString(null);
                 }}
               />
             ))}
-            <button>Submit</button>
           </div>
         )}
       </div>
