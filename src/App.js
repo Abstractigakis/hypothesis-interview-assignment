@@ -30,6 +30,7 @@ const App = () => {
   const [comment, setComment] = useState("");
   const [users, setUsers] = useState(ALL_USERS);
   const [searchString, setSearchString] = useState(null);
+  const [startLinkStartPosition, setStartLinkStartPosition] = useState(null);
 
   useEffect(() => {
     console.log(searchString);
@@ -42,6 +43,28 @@ const App = () => {
   }, [searchString]);
 
   const textAreaRef = useRef(null);
+
+  useEffect(() => {
+    if (comment.length >= 2 && comment.slice(-2) == "[[") {
+      // activate opening the user reference list
+      setStartLinkStartPosition(comment.length - 1);
+      setFormShow(true);
+    }
+    if (comment.length - 1 < startLinkStartPosition) {
+      setFormShow(false);
+      setStartLinkStartPosition(null);
+    }
+
+    if (startLinkStartPosition) {
+      let ss = comment.slice(startLinkStartPosition - comment.length + 1);
+      console.log(ss);
+      setSearchString(ss.length > 0 ? ss : "");
+    }
+    if (comment.length >= 2 && comment.slice(-2) == "]]") {
+      setFormShow(false);
+      setStartLinkStartPosition(null);
+    }
+  }, [comment]);
 
   return (
     <div className="align-items-center bg-red-300 h-screen w-screen">
