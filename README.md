@@ -9,13 +9,14 @@ We will start with a minimum viable product: i.e. the feature has all necessary 
 ## What is important
 
 - [ ] Simple way to add users in comments (we will use a button)
+- [ ] inplace typing auto complete
 
 ## What is extra
 
 - [ ] bold, Italics, ... mune (especially if we want to do it from scratch)
 - [ ] Multi feature search (search username and the user's name based on input)
 - [ ] add the 'wikilinks' effect for ever better UX
-- [ ] make the user ref render as a nice badge
+- [x] make the user ref render as a nice badge
 - [ ] smooth animated transitions to the form
 - [ ] animated svg buttons
 
