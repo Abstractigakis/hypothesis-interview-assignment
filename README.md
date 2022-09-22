@@ -8,8 +8,8 @@ We will start with a minimum viable product: i.e. the feature has all necessary 
 
 ## What is important
 
-- [ ] Simple way to add users in comments (we will use a button)
-- [ ] inplace typing auto complete
+- [x] Simple way to add users in comments (we will use a button)
+- [x] list of users updates on input change
 
 ## What is extra
 
